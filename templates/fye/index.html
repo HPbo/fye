@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="2">
+<thead>
+<tr>
+    <td>姓名</td>
+    <td>年龄</td>
+    <td>性别</td>
+</tr>
+</thead>
+<tbody>
+{% for item in result_list %}
+    <tr>
+        <td>{{ item.name }} </td>
+        <td>{{ item.age }} </td>
+        {% if item.gender %}
+        <td>{{ "男" }} </td>
+        {% else %}
+        <td>{{ "女"}}</td>
+        {% endif %}
+    </tr>
+{% endfor %}
+</tbody>
+</table>
+
+{% if result_list.has_previous %}
+<a href="?page={{ result_list.previous_page_number }}">前一页</a>
+{% endif %}
+
+当前页面 {{ result_list.number }} / {{ result_list.paginator.num_pages }}.
+
+{% if result_list.has_next %}
+<a href="?page={{ result_list.next_page_number }}">下一页</a>
+{% endif %}
+
+</body>
+</html>
